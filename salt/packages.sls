@@ -1,16 +1,10 @@
-vim-enhanced:
+vim:
   pkg:
-   - installed
+    - installed
+    {% if grains['os_family'] == 'RedHat' %}
+    - name: vim-enhanced
+    {% elif grains['os'] == 'Ubuntu' %}
+    - name: vim-nox
+    {% endif %}
 
-docker:
-  pkg:
-   - name: docker-io
-   - installed
-  service:
-   - running
-   - require:
-     - pkg: docker
 
-python-docker-py:
-  pkg:
-   - installed
