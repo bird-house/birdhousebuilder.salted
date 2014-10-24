@@ -16,6 +16,6 @@ docker:
     - require:
       - pkg: docker
 
-python-docker-py:
-  pkg:
+docker-py:
+  pip:
     - installed

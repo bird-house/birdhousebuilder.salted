@@ -7,4 +7,5 @@ vim:
     - name: vim-nox
     {% endif %}
 
-
+python-pip:
+  pkg.installed
