@@ -4,22 +4,28 @@ ubuntu_image:
     - force: True
     - order: 100
 
-ubuntu_remove:
+birdhouse_build:
+  docker.built:
+    - name: birdhouse:dev
+    - path: https://raw.githubusercontent.com/bird-house/malleefowl/pingudev/Dockerfile
+    - order: 101
+    
+birdhouse_remove:
   docker.absent:
-    - name: ubuntu
+    - name: birdhouse
     - order: 112
 
-ubuntu_container:
+birdhouse_container:
   docker.installed:
-    - name: ubuntu
-    - image: ubuntu:14.04
+    - name: birdhouse
+    - image: birdhouse:dev
     - require:
-      - docker: ubuntu_image
+      - docker: birdhouse_build
     - order: 120
 
-ubuntu_running:
+birdhouse_running:
   docker.running:
-    - container: ubuntu 
+    - container: birdhouse 
     - require:
-      - docker: ubuntu_container
+      - docker: birdhouse_container
     - order: 121
