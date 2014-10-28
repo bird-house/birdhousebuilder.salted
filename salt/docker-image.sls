@@ -1,7 +1,6 @@
 ubuntu_image:
   docker.pulled:
     - name: ubuntu:14.04
-    - force: True
     - order: 100
 
 birdhouse_build:
