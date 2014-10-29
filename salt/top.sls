@@ -2,4 +2,4 @@ base:
   '*':
    - core
    - docker
-   - docker-image
+   - docker-malleefowl
