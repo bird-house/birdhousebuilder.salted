@@ -4,7 +4,8 @@ CURRENT=`pwd`
 BASENAME=`basename $CURRENT`
 
 #SCRIPT_URL="https://bootstrap.saltstack.com"
-SCRIPT_URL="https://raw.githubusercontent.com/cehbrecht/salt-bootstrap/develop/bootstrap-salt.sh"
+SCRIPT_URL="https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.sh"
+#SCRIPT_URL="https://raw.githubusercontent.com/cehbrecht/salt-bootstrap/develop/bootstrap-salt.sh"
 
 python -c "import urllib; print urllib.urlopen(\"$SCRIPT_URL\").read()" > install_salt.sh
 
