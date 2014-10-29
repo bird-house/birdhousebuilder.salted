@@ -3,28 +3,32 @@ ubuntu_image:
     - name: ubuntu:14.04
     - order: 100
 
-birdhouse_build:
+malleefowl_build:
   docker.built:
-    - name: birdhouse:dev
+    - name: malleefowl
     - path: https://raw.githubusercontent.com/bird-house/malleefowl/pingudev/Dockerfile
     - order: 101
     
-birdhouse_remove:
+malleefowl_remove:
   docker.absent:
-    - name: birdhouse
+    - name: malleefowl
     - order: 112
 
-birdhouse_container:
+malleefowl_container:
   docker.installed:
-    - name: birdhouse
-    - image: birdhouse:dev
+    - name: malleefowl
+    - image: malleefowl
     - require:
-      - docker: birdhouse_build
+      - docker: malleefowl_build
     - order: 120
 
-birdhouse_running:
+malleefowl_running:
   docker.running:
-    - container: birdhouse 
+    - container: malleefowl
+    - port_bindings:
+      "9001/tcp":
+        HostIp: "0.0.0.0"
+        HostPort: "9001"
     - require:
-      - docker: birdhouse_container
+      - docker: malleefowl_container
     - order: 121
