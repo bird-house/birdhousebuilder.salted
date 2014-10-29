@@ -1,3 +1,9 @@
+https://github.com/bird-house/malleefowl.git:
+  git.latest:
+    - rev: pingudev
+    - target: /tmp/malleefowl
+    - order: 50
+
 ubuntu_image:
   docker.pulled:
     - name: ubuntu:14.04
@@ -6,7 +12,7 @@ ubuntu_image:
 malleefowl_build:
   docker.built:
     - name: malleefowl
-    - path: https://raw.githubusercontent.com/bird-house/malleefowl/pingudev/Dockerfile
+    - path: /tmp/malleefowl
     - order: 101
     
 malleefowl_remove:
