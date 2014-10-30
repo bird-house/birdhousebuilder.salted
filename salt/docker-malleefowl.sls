@@ -13,6 +13,8 @@ malleefowl_build:
   docker.built:
     - name: malleefowl
     - path: /tmp/malleefowl
+    - require:
+      - docker: ubuntu_image
     - order: 101
     
 malleefowl_remove:
