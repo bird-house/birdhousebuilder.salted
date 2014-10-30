@@ -24,6 +24,8 @@ malleefowl_container:
   docker.installed:
     - name: malleefowl
     - image: malleefowl
+    - ports:
+      - "9001/tcp"
     - require:
       - docker: malleefowl_build
     - order: 120
@@ -32,18 +34,18 @@ malleefowl_running:
   docker.running:
     - container: malleefowl
     - port_bindings:
-      "9001/tcp":
-        HostIp: ""
-        HostPort: "9001"
-      "8090/tcp":
-        HostIp: ""
-        HostPort: "8090"
-      "8091/tcp":
-        HostIp: ""
-        HostPort: "8091"
-      "8080/tcp":
-        HostIp: ""
-        HostPort: "8080"
+        "9001/tcp":
+            HostIp: "0.0.0.0"
+            HostPort: "9001"
+        "8090/tcp":
+            HostIp: "0.0.0.0"
+            HostPort: "8090"
+        "8091/tcp":
+            HostIp: "0.0.0.0"
+            HostPort: "8091"
+        "8080/tcp":
+            HostIp: "0.0.0.0"
+            HostPort: "8080"
     - require:
       - docker: malleefowl_container
     - order: 121
