@@ -1,12 +1,3 @@
-nginx:
-  pkg:
-    - installed
-  service:
-    - running
-    - watch:
-      - pkg: nginx
-      - file: /etc/nginx/nginx.conf
-
 /etc/nginx/nginx.conf:
   file:
     - managed
@@ -33,3 +24,11 @@ mkcert.sh:
         subject: /C=DE/O=MyCompony/OU=MyOrg/CN=localhost
         cert: /etc/nginx/proxy
         
+nginx:
+  pkg:
+    - installed
+  service:
+    - running
+    - watch:
+      - pkg: nginx
+      - file: /etc/nginx/nginx.conf
