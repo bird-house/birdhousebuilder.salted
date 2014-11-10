@@ -2,4 +2,6 @@ base:
   '*':
    - core
    - docker
-   - docker-malleefowl
+   - nginx
+
+
