@@ -24,4 +24,12 @@ nginx:
     - template: jinja
     - defaults:
         hostname: localhost
+
+mkcert.sh:
+  cmd.script:
+    - source: salt://nginx/mkcert.sh
+    - template: jinja
+    - defaults:
+        subject: /C=DE/O=MyCompony/OU=MyOrg/CN=localhost
+        cert: /etc/nginx/proxy
         
