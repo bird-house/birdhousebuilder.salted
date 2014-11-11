@@ -1,3 +1,9 @@
+nginx-pkgs:
+  pkg:
+    - latest
+    - names:
+      - nginx
+
 /etc/nginx/nginx.conf:
   file:
     - managed
@@ -5,15 +11,8 @@
     - user: root
     - group: root
     - mode: 644
-
-/etc/nginx/sites-enabled/proxy:
-  file.managed:
-    - source: salt://nginx/proxy.conf
-    - user: root
-    - group: root
-    - mode: 644
-    - template: jinja
-    - hostname: {{pillar['servername'] + '.' + pillar['domainname']}}
+    - require:
+      - pkg: nginx-pkgs
 
 mkcert.sh:
   cmd.script:
@@ -22,11 +21,27 @@ mkcert.sh:
     - subject: {{ pillar['subject']}}
     - cert: /etc/nginx/proxy.cert
         
+/etc/nginx/sites-enabled/proxy:
+  file.managed:
+    - source: salt://nginx/proxy.conf
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+    - hostname: {{ pillar['fqdn'] }}
+    - require:
+      - pkg: nginx-pkgs
+
+/etc/nginx/sites-enabled:
+  file:
+    - directory
+    - clean: True
+    - require:
+      - file: /etc/nginx/sites-enabled/proxy
+
 nginx:
-  pkg:
-    - installed
   service:
     - running
     - watch:
-      - pkg: nginx
       - file: /etc/nginx/nginx.conf
+      - file: /etc/nginx/sites-enabled/proxy
