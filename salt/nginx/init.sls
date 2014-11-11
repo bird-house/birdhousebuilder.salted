@@ -20,9 +20,8 @@ mkcert.sh:
   cmd.script:
     - source: salt://nginx/mkcert.sh
     - template: jinja
-    - defaults:
-        subject: /C=DE/O=MyCompony/OU=MyOrg/CN=localhost
-        cert: /etc/nginx/proxy
+    - subject: /C=DE/O=MyCompany/OU=MyOrg/CN=localhost
+    - cert: /etc/nginx/proxy.cert
         
 nginx:
   pkg:
