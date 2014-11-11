@@ -11,6 +11,12 @@ nginx-pkgs:
     - user: root
     - group: root
     - mode: 644
+    - template: jinja
+{% if grains['os_family'] == 'RedHat' %}
+    - nginx_user: nobody
+{% elif grains['os_family'] == 'Debian' %}
+    - nginx_user: www-data
+{% endif %}
     - require:
       - pkg: nginx-pkgs
 
