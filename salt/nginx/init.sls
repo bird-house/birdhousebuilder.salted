@@ -20,7 +20,7 @@ mkcert.sh:
     - template: jinja
     - subject: {{ pillar['subject']}}
     - cert: /etc/nginx/proxy.cert
-        
+
 /etc/nginx/sites-enabled/proxy:
   file.managed:
     - source: salt://nginx/proxy.conf
@@ -29,6 +29,7 @@ mkcert.sh:
     - mode: 644
     - template: jinja
     - hostname: {{ pillar['fqdn'] }}
+    - makedirs: True
     - require:
       - pkg: nginx-pkgs
 
