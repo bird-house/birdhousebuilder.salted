@@ -13,14 +13,13 @@
     - group: root
     - mode: 644
     - template: jinja
-    - defaults:
-        hostname: localhost
+    - hostname: {{pillar['servername'] + '.' + pillar['domainname']}}
 
 mkcert.sh:
   cmd.script:
     - source: salt://nginx/mkcert.sh
     - template: jinja
-    - subject: /C=DE/O=MyCompany/OU=MyOrg/CN=localhost
+    - subject: {{ pillar['subject']}}
     - cert: /etc/nginx/proxy.cert
         
 nginx:

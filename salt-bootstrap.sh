@@ -24,9 +24,10 @@ sudo sh install_salt.sh stable
 
 echo "Setting up minon-only configuration ..."
 
-sudo sh -c "echo 'file_client: local' >> /etc/salt/minion"
+#sudo sh -c "echo 'file_client: local' >> /etc/salt/minion"
 sudo ln -sf $CURRENT/salt /srv
-#sudo salt-call state.highstate
+sudo ln -sf $CURRENT/pillar /srv
+#sudo salt-call state.highstate --local
 
 echo "Installing SaltStack minion done."
 

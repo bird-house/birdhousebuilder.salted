@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-sudo salt-call state.highstate
+sudo salt-call state.highstate --local
 
 # Local Variables:
 # indent-tabs-mode: nil
