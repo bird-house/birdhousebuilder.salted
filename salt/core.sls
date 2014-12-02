@@ -22,4 +22,6 @@ tmux:
 byobu:
   pkg.installed
 
+etckeeper:
+  pkg.installed
 
