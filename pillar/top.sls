@@ -1,5 +1,7 @@
 base:
   'mouflon.dkrz.de':
-    - demo
+    - mouflon
+  'bovec.dkrz.de':
+    - bovec
   '*':
     - development

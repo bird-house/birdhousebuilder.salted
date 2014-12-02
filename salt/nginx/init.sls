@@ -1,3 +1,17 @@
+/etc/yum.repos.d/nginx.repo:
+  file:
+    - managed
+    - source: salt://nginx/nginx.repo
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+{% if grains['os'] == 'CentOS' %}
+    - OS: centos
+{% elif grains['os'] == 'RedHat' %}
+    - OS: rhel
+{% endif %}
+
 nginx-pkgs:
   pkg:
     - latest
