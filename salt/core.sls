@@ -9,3 +9,17 @@ vim:
 
 python-pip:
   pkg.installed
+
+git:
+  pkg.installed
+
+bash:
+  pkg.installed
+
+tmux:
+  pkg.installed
+
+byobu:
+  pkg.installed
+
+
